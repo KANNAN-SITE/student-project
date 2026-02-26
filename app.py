@@ -1,18 +1,17 @@
 from flask import Flask, render_template, request, redirect
-import mysql.connector
+import psycopg2
 
 app = Flask(__name__)
 
-# MySQL connection
-db = mysql.connector.connect(
-    host="localhost",
-    user="root",
-    password="root",
-    database="studentdb"
+
+conn = psycopg2.connect(
+    host="aws-1-ap-southeast-1.pooler.supabase.com",
+    database="postgres",
+    user="postgres.oaiosgwqqeklecmduvui",
+    password="Kannan200719761977",
+    port="5432"
 )
-
-cursor = db.cursor()
-
+cur = conn.cursor()
 @app.route("/")
 def home():
     return render_template("index.html")
@@ -23,13 +22,13 @@ def submit():
     email = request.form["email"]
     course = request.form["course"]
 
-    sql = "INSERT INTO students (name,email,course) VALUES (%s,%s,%s)"
-    val = (name,email,course)
-
-    cursor.execute(sql,val)
-    db.commit()
+    cur.execute(
+        "INSERT INTO students (name,email,course) VALUES (%s,%s,%s)",
+        (name,email,course)
+    )
+    conn.commit()
 
     return redirect("/")
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)
