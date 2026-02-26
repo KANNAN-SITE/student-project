@@ -5,7 +5,37 @@ body{
   color:white;
   text-align:center;
 }
+section h2{
+ font-family:sans-serif;
+  color: black;
+  font-weight: bold;
 
+}
+section p1{
+   font-family:sans-serif;
+  color: black;
+  font-weight: bold;
+  font-size:larger;
+}
+h1{
+  font-family:Veradana;
+  color: black;
+  font-weight: bold;
+}
+header p{
+  font-family:Veradana;
+  color: darkred;
+  font-size:large;
+  font-weight: bold;
+}
+.profile{
+  width:150px;
+  height:150px;
+  border-radius:50%;
+  object-fit:cover;
+  border:5px solid white;
+  box-shadow:0 0 20px rgba(0,0,0,0.3);
+}
 header{
   padding:60px;
 }
